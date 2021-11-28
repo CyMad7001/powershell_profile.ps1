@@ -1,10 +1,11 @@
-# 1.0.7936.15588
+# 1.0.7992.37994
 
 [CmdletBinding()]
 param( [switch] $completions )
 
-"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE", `
-    "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin", `
+"C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\IDE\Extensions\Microsoft\Azure Storage Emulator", `
+    "C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\IDE", `
+    "C:\Program Files\Microsoft Visual Studio\2022\Preview\MSBuild\Current\Bin\amd64", `
     "C:\Portable Apps\IlSpy" | Add-DirectoryToPath
 
 if ($completions.IsPresent) {
@@ -21,7 +22,7 @@ if ($completions.IsPresent) {
 }
 
 $Env:PROJECT_DIRECTORY = Join-Path -Path ([IO.Path]::GetPathRoot($Env:USERPROFILE)) -ChildPath "Projects"
-Function me { Set-Location ([IO.Path]::Combine($Env:PROJECT_DIRECTORY, "springcomp")) }
+Function me { Push-Location ([IO.Path]::Combine($Env:PROJECT_DIRECTORY, "springcomp")) }
 Function pro { Set-Location $Env:PROJECT_DIRECTORY }
 Function run-tests {
     param([string]$pattern = "*Tests.csproj")
@@ -30,7 +31,10 @@ Function run-tests {
 Function vs {
     [CmdletBinding()]
     param(
+        [Parameter(ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [Alias("Solution")]
+        [Alias("Fullname")]
+        [Alias("PSPath")]
         [string]$path = $null
     )
 
