@@ -3,7 +3,7 @@
 Quickly install with the following command:
 
 ```pwsh
-irm https://raw.githubusercontent.com/springcomp/powershell_profile.ps1/master/Microsoft.PowerShell_profile.ps1 -OutFile $profile
+irm https://raw.githubusercontent.com/CyMad7001/powershell_profile.ps1/master/Microsoft.PowerShell_profile.ps1 -OutFile $profile
 ```
 
 Then open a PowerShell prompt or reload your profile.
